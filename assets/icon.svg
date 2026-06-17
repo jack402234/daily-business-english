@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
+  <title id="title">Daily Business English icon</title>
+  <rect width="512" height="512" rx="96" fill="#276749"/>
+  <path fill="#fffaf0" d="M128 132h256v248H128z"/>
+  <path fill="#163c2b" d="M164 178h184v30H164zm0 58h184v24H164zm0 52h126v24H164z"/>
+  <path fill="#b45309" d="M144 100h224v64H144z"/>
+  <text x="256" y="144" fill="#fffaf0" font-family="Arial, sans-serif" font-size="44" font-weight="700" text-anchor="middle">EN</text>
+</svg>

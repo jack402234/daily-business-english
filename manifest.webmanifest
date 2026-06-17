@@ -1,0 +1,17 @@
+{
+  "name": "Daily Business English",
+  "short_name": "Biz English",
+  "description": "A simple daily business English practice app for iPhone.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#fffaf0",
+  "theme_color": "#f7f2e8",
+  "icons": [
+    {
+      "src": "assets/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#f7f2e8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Business English">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <title>Daily Business English</title>
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="assets/icon.svg">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="top-bar">
+        <div>
+          <p class="eyebrow">Daily Practice</p>
+          <h1>Business English</h1>
+        </div>
+        <button class="icon-button" id="speak-main" type="button" aria-label="Speak today's sentence" title="Speak today's sentence">
+          <span aria-hidden="true">Play</span>
+        </button>
+      </header>
+
+      <section class="hero-panel" aria-labelledby="today-title">
+        <div class="date-row">
+          <span id="today-date">Today</span>
+          <span id="streak-label">0 day streak</span>
+        </div>
+        <h2 id="today-title">Loading...</h2>
+        <p id="today-translation"></p>
+        <div class="action-row">
+          <button id="complete-button" type="button">Mark Done</button>
+          <button class="secondary-button" id="next-button" type="button">Next</button>
+        </div>
+      </section>
+
+      <section class="practice-grid" aria-label="Daily practice">
+        <article>
+          <p class="section-label">Situation</p>
+          <h3 id="scenario-title"></h3>
+          <p id="scenario-copy"></p>
+        </article>
+
+        <article>
+          <p class="section-label">Useful Words</p>
+          <ul class="word-list" id="word-list"></ul>
+        </article>
+
+        <article>
+          <p class="section-label">Speak Out</p>
+          <p id="speak-prompt"></p>
+          <textarea id="note-box" rows="4" placeholder="Write your answer here..."></textarea>
+        </article>
+      </section>
+
+      <nav class="bottom-actions" aria-label="Quick actions">
+        <button id="copy-button" type="button">Copy</button>
+        <button id="reset-button" type="button">Reset</button>
+      </nav>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
