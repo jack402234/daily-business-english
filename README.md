@@ -1,25 +1,32 @@
 # Daily Business English
 
-A free and simple daily business English practice app for iPhone.
+A free iPhone-friendly business English dialogue practice app.
 
-## Simplest workflow
+## Learning flow
 
-1. Preview `index.html`.
-2. Publish this repository with GitHub Pages.
-3. Open the GitHub Pages URL in iPhone Safari.
-4. Tap Share, then Add to Home Screen.
+1. Listen to a short two-person business conversation.
+2. Read the active subtitle while the audio plays.
+3. Review 3 useful phrases from the conversation.
+4. Repeat one dialogue line at a time.
+5. Choose Again, Good, or Easy to schedule spaced review.
 
-This gives you a lightweight app-like experience without App Store submission or a paid Apple Developer account.
+The review buttons follow a simple forgetting-curve idea:
+
+- Again: review tomorrow
+- Good: review in a few days
+- Easy: review later
 
 ## Files
 
-- `index.html`: mobile practice page
+- `index.html`: mobile dialogue practice page
 - `styles.css`: iPhone-friendly layout
-- `app.js`: lesson switching, completion tracking, speech, and copy action
+- `app.js`: dialogue content, subtitles, speech, and spaced review
 - `manifest.webmanifest`: PWA settings
 - `sw.js`: offline cache
 - `shortcuts/daily-note-template.md`: iPhone Shortcuts note template
 
-## Free hosting
+## Publish
 
-Use GitHub Pages. It is free for this static app.
+Use GitHub Pages. It is free for a public repository.
+
+After pushing changes, open the GitHub Pages URL in iPhone Safari, then tap Share and Add to Home Screen.

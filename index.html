@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="theme-color" content="#f7f2e8">
+    <meta name="theme-color" content="#f4efe6">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-title" content="Business English">
+    <meta name="apple-mobile-web-app-title" content="Biz English">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <title>Daily Business English</title>
     <link rel="manifest" href="manifest.webmanifest">
@@ -17,49 +17,72 @@
     <main class="app-shell">
       <header class="top-bar">
         <div>
-          <p class="eyebrow">Daily Practice</p>
-          <h1>Business English</h1>
+          <p class="eyebrow">Business Dialogue</p>
+          <h1>Listen. Repeat. Review.</h1>
         </div>
-        <button class="icon-button" id="speak-main" type="button" aria-label="Speak today's sentence" title="Speak today's sentence">
-          <span aria-hidden="true">Play</span>
-        </button>
+        <span class="review-pill" id="review-status">Today</span>
       </header>
 
-      <section class="hero-panel" aria-labelledby="today-title">
-        <div class="date-row">
+      <section class="lesson-panel" aria-labelledby="lesson-title">
+        <div class="lesson-meta">
           <span id="today-date">Today</span>
-          <span id="streak-label">0 day streak</span>
+          <span id="review-stage">New</span>
         </div>
-        <h2 id="today-title">Loading...</h2>
-        <p id="today-translation"></p>
-        <div class="action-row">
-          <button id="complete-button" type="button">Mark Done</button>
-          <button class="secondary-button" id="next-button" type="button">Next</button>
+        <h2 id="lesson-title">Loading...</h2>
+        <p id="lesson-scenario"></p>
+        <button class="primary-button" id="play-dialogue" type="button">Play Dialogue</button>
+      </section>
+
+      <section class="subtitle-panel" aria-label="Dialogue subtitles">
+        <div class="subtitle-header">
+          <span>Subtitle</span>
+          <span id="line-count">1 / 1</span>
+        </div>
+        <div class="subtitle-card" id="subtitle-card">
+          <p class="speaker-name" id="active-speaker">Speaker</p>
+          <p class="subtitle-text" id="active-text">Ready</p>
+          <p class="subtitle-translation" id="active-translation"></p>
         </div>
       </section>
 
-      <section class="practice-grid" aria-label="Daily practice">
-        <article>
-          <p class="section-label">Situation</p>
-          <h3 id="scenario-title"></h3>
-          <p id="scenario-copy"></p>
-        </article>
+      <section class="dialogue-list" id="dialogue-list" aria-label="Conversation lines"></section>
 
-        <article>
-          <p class="section-label">Useful Words</p>
-          <ul class="word-list" id="word-list"></ul>
-        </article>
-
-        <article>
-          <p class="section-label">Speak Out</p>
-          <p id="speak-prompt"></p>
-          <textarea id="note-box" rows="4" placeholder="Write your answer here..."></textarea>
-        </article>
+      <section class="word-panel" aria-labelledby="word-title">
+        <div class="section-heading">
+          <p class="section-label">3 Key Phrases</p>
+          <h2 id="word-title">Vocabulary in context</h2>
+        </div>
+        <ul class="word-list" id="word-list"></ul>
       </section>
 
-      <nav class="bottom-actions" aria-label="Quick actions">
-        <button id="copy-button" type="button">Copy</button>
-        <button id="reset-button" type="button">Reset</button>
+      <section class="repeat-panel" aria-labelledby="repeat-title">
+        <div class="section-heading">
+          <p class="section-label">Repeat Practice</p>
+          <h2 id="repeat-title">Shadow one line</h2>
+        </div>
+        <p id="repeat-line"></p>
+        <div class="button-row">
+          <button class="secondary-button" id="play-line" type="button">Play Line</button>
+          <button class="secondary-button" id="next-line" type="button">Next Line</button>
+        </div>
+      </section>
+
+      <section class="review-panel" aria-labelledby="review-title">
+        <div class="section-heading">
+          <p class="section-label">Spaced Review</p>
+          <h2 id="review-title">How did it feel?</h2>
+        </div>
+        <p id="next-review-copy">Choose after practice to schedule your next review.</p>
+        <div class="review-actions">
+          <button id="again-button" type="button">Again</button>
+          <button id="good-button" type="button">Good</button>
+          <button id="easy-button" type="button">Easy</button>
+        </div>
+      </section>
+
+      <nav class="bottom-actions" aria-label="Lesson navigation">
+        <button id="previous-button" type="button">Previous</button>
+        <button id="next-lesson-button" type="button">Next</button>
       </nav>
     </main>
 
