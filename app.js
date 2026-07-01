@@ -1,5 +1,23 @@
 const LESSON_COUNT = 365;
 
+const uiText = {
+  playDialogue: "\u64ad\u653e\u5c0d\u8a71",
+  stop: "\u505c\u6b62",
+  noReviewDue: "\u4eca\u65e5\u7121\u9700\u8907\u7fd2",
+  reviewDueSuffix: "\u9805\u5f85\u8907\u7fd2",
+  nextPrefix: "\u4e0b\u6b21\uff1a",
+  newDialogue: "\u65b0\u5c0d\u8a71",
+  lastReviewPrefix: "\u4e0a\u6b21\u8907\u7fd2\uff1a",
+  nextReviewPrefix: "\u4e0b\u6b21\u8907\u7fd2\uff1a",
+  schedulePrompt: "\u7df4\u7fd2\u5f8c\uff0c\u9078\u64c7\u300c\u518d\u7df4\u4e00\u6b21\u300d\u3001\u300c\u9084\u4e0d\u932f\u300d\u6216\u300c\u5f88\u719f\u300d\u4f86\u5b89\u6392\u4e0b\u6b21\u8907\u7fd2\u3002",
+  scenarioFocus: "\u7df4\u7fd2\u4e3b\u984c\uff1a",
+  focusOpening: "\u7df4\u7fd2\u91cd\u9ede",
+  openingClearly: "\u6e05\u695a\u958b\u555f\u5546\u52d9\u5c0d\u8a71\u3002",
+  statusClearly: "\u7c21\u6f54\u56de\u5831\u76ee\u524d\u72c0\u614b\u3002",
+  riskPolitely: "\u79ae\u8c8c\u8aaa\u660e\u5546\u52d9\u98a8\u96aa\u3002",
+  actionClearly: "\u7528\u660e\u78ba\u884c\u52d5\u4f5c\u7d50\u3002"
+};
+
 const people = [
   ["Mia", "Daniel", "Manager", "Coordinator"],
   ["Alex", "Nina", "Account Lead", "Consultant"],
@@ -253,32 +271,32 @@ function buildLesson(index) {
 
   return {
     id: `dialogue-${sequence}-${slug(context.title)}-${slug(topic)}`,
-    title: `Day ${sequence}: ${context.title} - ${topic}`,
-    scenario: `${context.scenario} Focus topic: ${topic}.`,
+    title: `\u7b2c ${sequence} \u5929\uff1a${context.title} - ${topic}`,
+    scenario: `${context.scenario} ${uiText.scenarioFocus} ${topic}.`,
     dialogue: [
       {
         speaker: speakerA,
         role: roleA,
         text: `Hi ${speakerB}, ${context.opener} ${topic}?`,
-        translation: `Practice focus ${sequence}: opening a business conversation clearly.`
+        translation: `${uiText.focusOpening} ${sequence}: ${uiText.openingClearly}`
       },
       {
         speaker: speakerB,
         role: roleB,
         text: `Sure. ${context.status}, especially before ${timeframe}.`,
-        translation: `Practice focus ${sequence}: giving a concise status update.`
+        translation: `${uiText.focusOpening} ${sequence}: ${uiText.statusClearly}`
       },
       {
         speaker: speakerA,
         role: roleA,
         text: `Thanks. My main concern is ${context.risk}.`,
-        translation: `Practice focus ${sequence}: naming the business risk politely.`
+        translation: `${uiText.focusOpening} ${sequence}: ${uiText.riskPolitely}`
       },
       {
         speaker: speakerB,
         role: roleB,
         text: `Understood. I will ${context.action}, ${closingDetails[variant % closingDetails.length]}.`,
-        translation: `Practice focus ${sequence}: closing with a concrete next action.`
+        translation: `${uiText.focusOpening} ${sequence}: ${uiText.actionClearly}`
       }
     ],
     words: context.words.map(([term, meaning, note]) => ({ term, meaning, note }))
@@ -342,7 +360,7 @@ function addDays(days) {
 }
 
 function todayLabel() {
-  return new Intl.DateTimeFormat("en-US", {
+  return new Intl.DateTimeFormat("zh-TW", {
     month: "short",
     day: "numeric",
     weekday: "short"
@@ -437,11 +455,11 @@ function renderReview() {
   const review = currentReview();
   const dueCount = dueLessons().length;
 
-  elements.status.textContent = dueCount > 0 ? `${dueCount} review due` : "No review due";
-  elements.stage.textContent = review ? `Next: ${review.nextReview}` : `New dialogue ${state.lessonIndex + 1} / ${lessons.length}`;
+  elements.status.textContent = dueCount > 0 ? `${dueCount} ${uiText.reviewDueSuffix}` : uiText.noReviewDue;
+  elements.stage.textContent = review ? `${uiText.nextPrefix} ${review.nextReview}` : `${uiText.newDialogue} ${state.lessonIndex + 1} / ${lessons.length}`;
   elements.reviewCopy.textContent = review
-    ? `Last review: ${review.lastReviewed}. Next review: ${review.nextReview}.`
-    : "After practice, choose Again, Good, or Easy to schedule the next review.";
+    ? `${uiText.lastReviewPrefix}${review.lastReviewed}. ${uiText.nextReviewPrefix}${review.nextReview}.`
+    : uiText.schedulePrompt;
 }
 
 function render() {
@@ -465,7 +483,7 @@ function makeUtterance(text, lineIndex) {
 
 function stopSpeech() {
   state.isPlaying = false;
-  elements.playDialogue.textContent = "Play Dialogue";
+  elements.playDialogue.textContent = uiText.playDialogue;
   window.speechSynthesis.cancel();
 }
 
@@ -496,7 +514,7 @@ function toggleDialogue() {
     return;
   }
   state.isPlaying = true;
-  elements.playDialogue.textContent = "Stop";
+  elements.playDialogue.textContent = uiText.stop;
   playDialogueFrom(0);
 }
 
