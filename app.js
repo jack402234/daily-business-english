@@ -1,113 +1,291 @@
-const lessons = [
+const LESSON_COUNT = 365;
+
+const people = [
+  ["Mia", "Daniel", "Manager", "Coordinator"],
+  ["Alex", "Nina", "Account Lead", "Consultant"],
+  ["Ethan", "Grace", "Sales", "Operations"],
+  ["Olivia", "Marcus", "Product Lead", "Engineer"],
+  ["Sophie", "Ken", "Marketing", "Designer"],
+  ["Liam", "Ava", "Finance", "Project Lead"],
+  ["Noah", "Emma", "Support Lead", "Customer Success"],
+  ["Chloe", "Ryan", "HR Partner", "Team Lead"],
+  ["Iris", "Leo", "Buyer", "Vendor Manager"],
+  ["Ben", "Sarah", "Analyst", "Director"]
+];
+
+const topics = [
+  "project timeline",
+  "client proposal",
+  "pricing options",
+  "quarterly report",
+  "budget approval",
+  "vendor contract",
+  "product launch",
+  "sales forecast",
+  "customer feedback",
+  "support ticket",
+  "meeting agenda",
+  "training plan",
+  "website update",
+  "inventory report",
+  "invoice review",
+  "hiring plan",
+  "performance review",
+  "marketing campaign",
+  "data request",
+  "risk assessment",
+  "delivery schedule",
+  "onboarding deck",
+  "weekly update",
+  "partnership plan",
+  "quality issue",
+  "purchase order",
+  "status dashboard",
+  "launch checklist",
+  "renewal discussion",
+  "resource plan",
+  "internal announcement",
+  "customer interview",
+  "design handoff",
+  "compliance check",
+  "travel request",
+  "training session",
+  "payment timeline",
+  "service agreement",
+  "team workshop",
+  "market research",
+  "regional rollout"
+];
+
+const contexts = [
   {
-    id: "project-timeline",
-    title: "Project Timeline Update",
-    scenario: "A manager checks whether a client deliverable is still on track.",
-    dialogue: [
-      {
-        speaker: "Mia",
-        role: "Manager",
-        text: "Hi Daniel, do you have a minute to review the project timeline?",
-        translation: "\u55e8 Daniel\uff0c\u4f60\u6709\u4e00\u5206\u9418\u53ef\u4ee5\u4e00\u8d77\u78ba\u8a8d\u5c08\u6848\u6642\u7a0b\u55ce\uff1f"
-      },
-      {
-        speaker: "Daniel",
-        role: "Coordinator",
-        text: "Sure. The design review is complete, but the client feedback is still pending.",
-        translation: "\u7576\u7136\u3002\u8a2d\u8a08\u5be9\u67e5\u5df2\u7d93\u5b8c\u6210\uff0c\u4f46\u5ba2\u6236\u56de\u994b\u9084\u5728\u7b49\u5f85\u4e2d\u3002"
-      },
-      {
-        speaker: "Mia",
-        role: "Manager",
-        text: "Thanks. Please flag any risks before the end of the day.",
-        translation: "\u8b1d\u8b1d\u3002\u8acb\u5728\u4eca\u5929\u4e0b\u73ed\u524d\u63d0\u9192\u6211\u4efb\u4f55\u98a8\u96aa\u3002"
-      },
-      {
-        speaker: "Daniel",
-        role: "Coordinator",
-        text: "Will do. I will send a short update by five.",
-        translation: "\u6c92\u554f\u984c\u3002\u6211\u6703\u5728\u4e94\u9ede\u524d\u767c\u4e00\u4efd\u7c21\u77ed\u66f4\u65b0\u3002"
-      }
-    ],
+    title: "Progress Check",
+    scenario: "Two colleagues check whether a work item is still on track.",
+    opener: "do you have a minute to review the",
+    status: "the first part is complete, but one detail is still pending",
+    risk: "a late response from the client",
+    action: "send a short update before the end of the day",
     words: [
-      { term: "project timeline", meaning: "\u5c08\u6848\u6642\u7a0b", note: "review the project timeline" },
-      { term: "pending", meaning: "\u7b49\u5f85\u4e2d", note: "feedback is still pending" },
-      { term: "flag any risks", meaning: "\u63d0\u9192\u4efb\u4f55\u98a8\u96aa", note: "flag any risks before Friday" }
+      ["on track", "progressing as planned", "keep the project on track"],
+      ["pending", "not finished yet", "the approval is still pending"],
+      ["short update", "brief status note", "send a short update"]
     ]
   },
   {
-    id: "client-follow-up",
     title: "Client Follow-up",
-    scenario: "Two colleagues decide how to respond after a client meeting.",
-    dialogue: [
-      {
-        speaker: "Alex",
-        role: "Account Lead",
-        text: "What was your takeaway from the client call?",
-        translation: "\u4f60\u5c0d\u9019\u6b21\u5ba2\u6236\u96fb\u8a71\u6703\u8b70\u7684\u4e3b\u8981\u7d50\u8ad6\u662f\u4ec0\u9ebc\uff1f"
-      },
-      {
-        speaker: "Nina",
-        role: "Consultant",
-        text: "They like the proposal, but they need clearer pricing options.",
-        translation: "\u4ed6\u5011\u559c\u6b61\u9019\u500b\u63d0\u6848\uff0c\u4f46\u9700\u8981\u66f4\u6e05\u695a\u7684\u50f9\u683c\u9078\u9805\u3002"
-      },
-      {
-        speaker: "Alex",
-        role: "Account Lead",
-        text: "Good point. Can you prepare a revised version by tomorrow morning?",
-        translation: "\u597d\u91cd\u9ede\u3002\u4f60\u53ef\u4ee5\u5728\u660e\u5929\u65e9\u4e0a\u524d\u6e96\u5099\u4fee\u8a02\u7248\u55ce\uff1f"
-      },
-      {
-        speaker: "Nina",
-        role: "Consultant",
-        text: "Yes. I will highlight the differences between each option.",
-        translation: "\u53ef\u4ee5\u3002\u6211\u6703\u6a19\u51fa\u6bcf\u500b\u9078\u9805\u4e4b\u9593\u7684\u5dee\u7570\u3002"
-      }
-    ],
+    scenario: "A team prepares a clear response after speaking with a client.",
+    opener: "can we align on the follow-up for the",
+    status: "the client likes the direction, but they asked for clearer details",
+    risk: "sending a response that feels too vague",
+    action: "draft a focused reply with the key points",
     words: [
-      { term: "takeaway", meaning: "\u4e3b\u8981\u7d50\u8ad6", note: "my takeaway is..." },
-      { term: "pricing options", meaning: "\u50f9\u683c\u9078\u9805", note: "clearer pricing options" },
-      { term: "revised version", meaning: "\u4fee\u8a02\u7248", note: "prepare a revised version" }
+      ["align on", "agree about the next step", "align on the follow-up"],
+      ["key points", "main ideas", "summarize the key points"],
+      ["focused reply", "clear response", "draft a focused reply"]
     ]
   },
   {
-    id: "meeting-reschedule",
-    title: "Rescheduling a Meeting",
-    scenario: "A team member asks to move a meeting without sounding abrupt.",
-    dialogue: [
-      {
-        speaker: "Ethan",
-        role: "Sales",
-        text: "Hi Grace, would it be possible to move our meeting to Thursday?",
-        translation: "\u55e8 Grace\uff0c\u6211\u5011\u7684\u6703\u8b70\u6709\u53ef\u80fd\u6539\u5230\u9031\u56db\u55ce\uff1f"
-      },
-      {
-        speaker: "Grace",
-        role: "Operations",
-        text: "Thursday works for me. Is the agenda still the same?",
-        translation: "\u9031\u56db\u6211\u53ef\u4ee5\u3002\u8b70\u7a0b\u9084\u662f\u4e00\u6a23\u55ce\uff1f"
-      },
-      {
-        speaker: "Ethan",
-        role: "Sales",
-        text: "Mostly, but I would like to add a short budget discussion.",
-        translation: "\u5927\u81f4\u4e00\u6a23\uff0c\u4f46\u6211\u60f3\u52a0\u4e00\u500b\u7c21\u77ed\u7684\u9810\u7b97\u8a0e\u8ad6\u3002"
-      },
-      {
-        speaker: "Grace",
-        role: "Operations",
-        text: "No problem. Please send the updated invite when you can.",
-        translation: "\u6c92\u554f\u984c\u3002\u65b9\u4fbf\u6642\u8acb\u767c\u9001\u66f4\u65b0\u5f8c\u7684\u9080\u8acb\u3002"
-      }
-    ],
+    title: "Schedule Change",
+    scenario: "A meeting or delivery date needs to move politely.",
+    opener: "would it be possible to adjust the timing for the",
+    status: "the current time still works, but Thursday would be smoother",
+    risk: "confusing the team with two different schedules",
+    action: "send the updated invite right away",
     words: [
-      { term: "move our meeting", meaning: "\u6539\u671f\u6211\u5011\u7684\u6703\u8b70", note: "move our meeting to Thursday" },
-      { term: "agenda", meaning: "\u8b70\u7a0b", note: "is the agenda still the same?" },
-      { term: "updated invite", meaning: "\u66f4\u65b0\u5f8c\u7684\u9080\u8acb", note: "send the updated invite" }
+      ["adjust the timing", "change the schedule", "adjust the timing for the meeting"],
+      ["works for me", "is acceptable to me", "Thursday works for me"],
+      ["updated invite", "revised calendar invitation", "send the updated invite"]
+    ]
+  },
+  {
+    title: "Budget Discussion",
+    scenario: "Two coworkers clarify money, scope, and approval.",
+    opener: "can we quickly go over the budget for the",
+    status: "the estimate is reasonable, but the extra scope needs approval",
+    risk: "committing before finance signs off",
+    action: "separate the required cost from the optional cost",
+    words: [
+      ["go over", "review together", "go over the budget"],
+      ["extra scope", "additional work", "approve the extra scope"],
+      ["sign off", "formally approve", "finance needs to sign off"]
+    ]
+  },
+  {
+    title: "Vendor Update",
+    scenario: "A team checks on an external partner or supplier.",
+    opener: "did you hear back from the vendor about the",
+    status: "they confirmed the date, but they still need the final document",
+    risk: "missing the delivery window",
+    action: "follow up with one clear deadline",
+    words: [
+      ["hear back", "receive a response", "hear back from the vendor"],
+      ["delivery window", "target delivery period", "miss the delivery window"],
+      ["clear deadline", "specific due date", "share one clear deadline"]
+    ]
+  },
+  {
+    title: "Team Handoff",
+    scenario: "One team passes work to another team cleanly.",
+    opener: "can you walk me through the handoff for the",
+    status: "most files are ready, but the notes need one final check",
+    risk: "the next team missing the background context",
+    action: "add a summary at the top of the document",
+    words: [
+      ["walk me through", "explain step by step", "walk me through the handoff"],
+      ["background context", "important prior information", "share the background context"],
+      ["summary", "brief overview", "add a summary at the top"]
+    ]
+  },
+  {
+    title: "Quality Review",
+    scenario: "A team discusses a defect, concern, or improvement.",
+    opener: "can we review the quality concern in the",
+    status: "the issue is limited, but it needs to be documented",
+    risk: "the same problem appearing again later",
+    action: "capture the root cause and next step",
+    words: [
+      ["quality concern", "possible quality issue", "review the quality concern"],
+      ["root cause", "main reason for a problem", "capture the root cause"],
+      ["next step", "following action", "agree on the next step"]
+    ]
+  },
+  {
+    title: "Data Request",
+    scenario: "A colleague asks for information in a clear and professional way.",
+    opener: "could you help me pull the latest data for the",
+    status: "the dashboard is updated, but one metric needs validation",
+    risk: "sharing numbers before they are confirmed",
+    action: "double-check the source and send the final number",
+    words: [
+      ["latest data", "newest information", "pull the latest data"],
+      ["metric", "measurement", "validate the metric"],
+      ["double-check", "confirm carefully", "double-check the source"]
+    ]
+  },
+  {
+    title: "Decision Prep",
+    scenario: "Two coworkers prepare options before a manager decides.",
+    opener: "can we prepare the options for the",
+    status: "we have two strong options, but the trade-off is not clear yet",
+    risk: "making the recommendation too complicated",
+    action: "compare cost, timing, and impact on one page",
+    words: [
+      ["trade-off", "balance between pros and cons", "explain the trade-off"],
+      ["recommendation", "suggested choice", "make a recommendation"],
+      ["impact", "effect or result", "compare the impact"]
+    ]
+  },
+  {
+    title: "Escalation",
+    scenario: "A team decides when to raise an issue to a manager.",
+    opener: "should we escalate the issue with the",
+    status: "we tried the normal process, but the delay is still unresolved",
+    risk: "waiting too long to involve the right person",
+    action: "send a concise note with the timeline and blockers",
+    words: [
+      ["escalate", "raise to a higher level", "escalate the issue"],
+      ["unresolved", "not solved yet", "the delay is unresolved"],
+      ["blocker", "thing stopping progress", "list the blockers"]
+    ]
+  },
+  {
+    title: "Negotiation",
+    scenario: "Two people prepare for a practical business negotiation.",
+    opener: "how flexible can we be on the",
+    status: "we can adjust the timeline, but the core scope should stay the same",
+    risk: "giving away too much too early",
+    action: "offer one concession and ask for confirmation",
+    words: [
+      ["flexible", "able to change", "be flexible on the timeline"],
+      ["core scope", "main agreed work", "keep the core scope"],
+      ["concession", "thing offered in exchange", "offer one concession"]
+    ]
+  },
+  {
+    title: "Meeting Summary",
+    scenario: "A colleague turns a meeting into clear next actions.",
+    opener: "can we turn the discussion into action items for the",
+    status: "the discussion was useful, but the owners are not clear",
+    risk: "people leaving without knowing what to do",
+    action: "write each action item with an owner and due date",
+    words: [
+      ["action item", "specific task after a meeting", "write the action items"],
+      ["owner", "person responsible", "assign an owner"],
+      ["due date", "deadline", "add a due date"]
     ]
   }
 ];
+
+const timeframes = [
+  "today",
+  "tomorrow morning",
+  "Friday",
+  "the client meeting",
+  "the weekly review",
+  "the end of the month",
+  "the launch call",
+  "the next checkpoint"
+];
+
+const closingDetails = [
+  "and I will keep the message concise",
+  "and I will call out the owner clearly",
+  "and I will include the latest deadline",
+  "and I will separate facts from assumptions",
+  "and I will share the next checkpoint",
+  "and I will highlight the decision needed",
+  "and I will keep the tone professional",
+  "and I will confirm the action items"
+];
+
+function slug(value) {
+  return value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+}
+
+function buildLesson(index) {
+  const context = contexts[index % contexts.length];
+  const topic = topics[index % topics.length];
+  const pair = people[index % people.length];
+  const timeframe = timeframes[index % timeframes.length];
+  const variant = Math.floor(index / contexts.length);
+  const [speakerA, speakerB, roleA, roleB] = pair;
+  const sequence = String(index + 1).padStart(3, "0");
+
+  return {
+    id: `dialogue-${sequence}-${slug(context.title)}-${slug(topic)}`,
+    title: `Day ${sequence}: ${context.title} - ${topic}`,
+    scenario: `${context.scenario} Focus topic: ${topic}.`,
+    dialogue: [
+      {
+        speaker: speakerA,
+        role: roleA,
+        text: `Hi ${speakerB}, ${context.opener} ${topic}?`,
+        translation: `Practice focus ${sequence}: opening a business conversation clearly.`
+      },
+      {
+        speaker: speakerB,
+        role: roleB,
+        text: `Sure. ${context.status}, especially before ${timeframe}.`,
+        translation: `Practice focus ${sequence}: giving a concise status update.`
+      },
+      {
+        speaker: speakerA,
+        role: roleA,
+        text: `Thanks. My main concern is ${context.risk}.`,
+        translation: `Practice focus ${sequence}: naming the business risk politely.`
+      },
+      {
+        speaker: speakerB,
+        role: roleB,
+        text: `Understood. I will ${context.action}, ${closingDetails[variant % closingDetails.length]}.`,
+        translation: `Practice focus ${sequence}: closing with a concrete next action.`
+      }
+    ],
+    words: context.words.map(([term, meaning, note]) => ({ term, meaning, note }))
+  };
+}
+
+const lessons = Array.from({ length: LESSON_COUNT }, (_, index) => buildLesson(index));
 
 const reviewIntervals = {
   again: 1,
@@ -115,8 +293,14 @@ const reviewIntervals = {
   easy: 7
 };
 
+function defaultLessonIndex() {
+  const now = new Date();
+  const start = new Date(now.getFullYear(), 0, 1);
+  return Math.floor((now - start) / 86400000) % lessons.length;
+}
+
 const state = {
-  lessonIndex: Number(localStorage.getItem("lessonIndex") || "0"),
+  lessonIndex: Number(localStorage.getItem("lessonIndex") || String(defaultLessonIndex())),
   activeLine: 0,
   isPlaying: false,
   review: JSON.parse(localStorage.getItem("reviewState") || "{}")
@@ -200,7 +384,7 @@ function setActiveLine(index) {
   state.activeLine = (index + lesson.dialogue.length) % lesson.dialogue.length;
   const line = lesson.dialogue[state.activeLine];
 
-  elements.activeSpeaker.textContent = `${line.speaker} · ${line.role}`;
+  elements.activeSpeaker.textContent = `${line.speaker} - ${line.role}`;
   elements.activeText.textContent = line.text;
   elements.activeTranslation.textContent = line.translation;
   elements.lineCount.textContent = `${state.activeLine + 1} / ${lesson.dialogue.length}`;
@@ -254,7 +438,7 @@ function renderReview() {
   const dueCount = dueLessons().length;
 
   elements.status.textContent = dueCount > 0 ? `${dueCount} review due` : "No review due";
-  elements.stage.textContent = review ? `Next: ${review.nextReview}` : "New dialogue";
+  elements.stage.textContent = review ? `Next: ${review.nextReview}` : `New dialogue ${state.lessonIndex + 1} / ${lessons.length}`;
   elements.reviewCopy.textContent = review
     ? `Last review: ${review.lastReviewed}. Next review: ${review.nextReview}.`
     : "After practice, choose Again, Good, or Easy to schedule the next review.";

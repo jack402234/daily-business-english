@@ -1,10 +1,10 @@
 # Daily Business English
 
-A free iPhone-friendly business English dialogue practice app.
+A free iPhone-friendly business English dialogue practice app with 365 non-repeating dialogue lessons.
 
 ## Learning flow
 
-1. Listen to a short two-person business conversation.
+1. Listen to one of 365 short two-person business conversations.
 2. Read the active subtitle while the audio plays.
 3. Review 3 useful phrases from the conversation.
 4. Repeat one dialogue line at a time.
@@ -20,7 +20,7 @@ The review buttons follow a simple forgetting-curve idea:
 
 - `index.html`: mobile dialogue practice page
 - `styles.css`: iPhone-friendly layout
-- `app.js`: dialogue content, subtitles, speech, and spaced review
+- `app.js`: 365 dialogue lessons, subtitles, speech, and spaced review
 - `manifest.webmanifest`: PWA settings
 - `sw.js`: offline cache
 - `shortcuts/daily-note-template.md`: iPhone Shortcuts note template
