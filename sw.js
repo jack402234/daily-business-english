@@ -1,9 +1,9 @@
-const CACHE_NAME = "daily-business-english-v6";
+const CACHE_NAME = "daily-business-english-v7";
 const ASSETS = [
   "./",
   "./index.html",
-  "./styles.css",
-  "./app.js",
+  "./styles.css?v=7",
+  "./app.js?v=7",
   "./manifest.webmanifest",
   "./assets/icon.svg"
 ];
