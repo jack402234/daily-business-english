@@ -11,11 +11,11 @@ const uiText = {
   nextReviewPrefix: "\u4e0b\u6b21\u8907\u7fd2\uff1a",
   schedulePrompt: "\u7df4\u7fd2\u5f8c\uff0c\u9078\u64c7\u300c\u518d\u7df4\u4e00\u6b21\u300d\u3001\u300c\u9084\u4e0d\u932f\u300d\u6216\u300c\u5f88\u719f\u300d\u4f86\u5b89\u6392\u4e0b\u6b21\u8907\u7fd2\u3002",
   scenarioFocus: "\u7df4\u7fd2\u4e3b\u984c\uff1a",
-  focusOpening: "\u7df4\u7fd2\u91cd\u9ede",
-  openingClearly: "\u6e05\u695a\u958b\u555f\u5546\u52d9\u5c0d\u8a71\u3002",
-  statusClearly: "\u7c21\u6f54\u56de\u5831\u76ee\u524d\u72c0\u614b\u3002",
-  riskPolitely: "\u79ae\u8c8c\u8aaa\u660e\u5546\u52d9\u98a8\u96aa\u3002",
-  actionClearly: "\u7528\u660e\u78ba\u884c\u52d5\u4f5c\u7d50\u3002"
+  greetingPrefix: "\u55e8 ",
+  greetingSuffix: "\uff0c\u53ef\u4ee5\u4e00\u8d77\u78ba\u8a8d\u9019\u4ef6\u4e8b\u55ce\uff1f",
+  statusTranslation: "\u53ef\u4ee5\u3002\u6574\u9ad4\u6709\u9032\u5c55\uff0c\u4f46\u4ecd\u6709\u4e00\u4e9b\u7d30\u7bc0\u9700\u8981\u78ba\u8a8d\u3002",
+  riskTranslation: "\u8b1d\u8b1d\u3002\u6211\u4e3b\u8981\u64d4\u5fc3\u9019\u6703\u5f71\u97ff\u6642\u7a0b\u6216\u54c1\u8cea\u3002",
+  actionTranslation: "\u4e86\u89e3\u3002\u6211\u6703\u6574\u7406\u4e0b\u4e00\u6b65\u4e26\u56de\u8986\u4f60\u3002"
 };
 
 const people = [
@@ -84,9 +84,9 @@ const contexts = [
     risk: "a late response from the client",
     action: "send a short update before the end of the day",
     words: [
-      ["on track", "progressing as planned", "keep the project on track"],
-      ["pending", "not finished yet", "the approval is still pending"],
-      ["short update", "brief status note", "send a short update"]
+      ["on track", "\u4f9d\u8a08\u756b\u9032\u884c", "keep the project on track"],
+      ["pending", "\u5f85\u78ba\u8a8d", "the approval is still pending"],
+      ["short update", "\u7c21\u77ed\u66f4\u65b0", "send a short update"]
     ]
   },
   {
@@ -97,9 +97,9 @@ const contexts = [
     risk: "sending a response that feels too vague",
     action: "draft a focused reply with the key points",
     words: [
-      ["align on", "agree about the next step", "align on the follow-up"],
-      ["key points", "main ideas", "summarize the key points"],
-      ["focused reply", "clear response", "draft a focused reply"]
+      ["align on", "\u5c0d\u9f4a\u5171\u8b58", "align on the follow-up"],
+      ["key points", "\u91cd\u9ede", "summarize the key points"],
+      ["focused reply", "\u6e05\u695a\u56de\u8986", "draft a focused reply"]
     ]
   },
   {
@@ -110,9 +110,9 @@ const contexts = [
     risk: "confusing the team with two different schedules",
     action: "send the updated invite right away",
     words: [
-      ["adjust the timing", "change the schedule", "adjust the timing for the meeting"],
-      ["works for me", "is acceptable to me", "Thursday works for me"],
-      ["updated invite", "revised calendar invitation", "send the updated invite"]
+      ["adjust the timing", "\u8abf\u6574\u6642\u9593", "adjust the timing for the meeting"],
+      ["works for me", "\u6211\u53ef\u4ee5", "Thursday works for me"],
+      ["updated invite", "\u66f4\u65b0\u5f8c\u7684\u9080\u8acb", "send the updated invite"]
     ]
   },
   {
@@ -123,9 +123,9 @@ const contexts = [
     risk: "committing before finance signs off",
     action: "separate the required cost from the optional cost",
     words: [
-      ["go over", "review together", "go over the budget"],
-      ["extra scope", "additional work", "approve the extra scope"],
-      ["sign off", "formally approve", "finance needs to sign off"]
+      ["go over", "\u4e00\u8d77\u6aa2\u8996", "go over the budget"],
+      ["extra scope", "\u65b0\u589e\u7bc4\u570d", "approve the extra scope"],
+      ["sign off", "\u6b63\u5f0f\u6838\u51c6", "finance needs to sign off"]
     ]
   },
   {
@@ -136,9 +136,9 @@ const contexts = [
     risk: "missing the delivery window",
     action: "follow up with one clear deadline",
     words: [
-      ["hear back", "receive a response", "hear back from the vendor"],
-      ["delivery window", "target delivery period", "miss the delivery window"],
-      ["clear deadline", "specific due date", "share one clear deadline"]
+      ["hear back", "\u6536\u5230\u56de\u8986", "hear back from the vendor"],
+      ["delivery window", "\u4ea4\u4ed8\u671f\u9593", "miss the delivery window"],
+      ["clear deadline", "\u660e\u78ba\u671f\u9650", "share one clear deadline"]
     ]
   },
   {
@@ -149,9 +149,9 @@ const contexts = [
     risk: "the next team missing the background context",
     action: "add a summary at the top of the document",
     words: [
-      ["walk me through", "explain step by step", "walk me through the handoff"],
-      ["background context", "important prior information", "share the background context"],
-      ["summary", "brief overview", "add a summary at the top"]
+      ["walk me through", "\u9010\u6b65\u8aaa\u660e", "walk me through the handoff"],
+      ["background context", "\u80cc\u666f\u8108\u7d61", "share the background context"],
+      ["summary", "\u6458\u8981", "add a summary at the top"]
     ]
   },
   {
@@ -162,9 +162,9 @@ const contexts = [
     risk: "the same problem appearing again later",
     action: "capture the root cause and next step",
     words: [
-      ["quality concern", "possible quality issue", "review the quality concern"],
-      ["root cause", "main reason for a problem", "capture the root cause"],
-      ["next step", "following action", "agree on the next step"]
+      ["quality concern", "\u54c1\u8cea\u7591\u616e", "review the quality concern"],
+      ["root cause", "\u6839\u672c\u539f\u56e0", "capture the root cause"],
+      ["next step", "\u4e0b\u4e00\u6b65", "agree on the next step"]
     ]
   },
   {
@@ -175,9 +175,9 @@ const contexts = [
     risk: "sharing numbers before they are confirmed",
     action: "double-check the source and send the final number",
     words: [
-      ["latest data", "newest information", "pull the latest data"],
-      ["metric", "measurement", "validate the metric"],
-      ["double-check", "confirm carefully", "double-check the source"]
+      ["latest data", "\u6700\u65b0\u8cc7\u6599", "pull the latest data"],
+      ["metric", "\u6307\u6a19", "validate the metric"],
+      ["double-check", "\u518d\u6b21\u78ba\u8a8d", "double-check the source"]
     ]
   },
   {
@@ -188,9 +188,9 @@ const contexts = [
     risk: "making the recommendation too complicated",
     action: "compare cost, timing, and impact on one page",
     words: [
-      ["trade-off", "balance between pros and cons", "explain the trade-off"],
-      ["recommendation", "suggested choice", "make a recommendation"],
-      ["impact", "effect or result", "compare the impact"]
+      ["trade-off", "\u53d6\u6368", "explain the trade-off"],
+      ["recommendation", "\u5efa\u8b70", "make a recommendation"],
+      ["impact", "\u5f71\u97ff", "compare the impact"]
     ]
   },
   {
@@ -201,9 +201,9 @@ const contexts = [
     risk: "waiting too long to involve the right person",
     action: "send a concise note with the timeline and blockers",
     words: [
-      ["escalate", "raise to a higher level", "escalate the issue"],
-      ["unresolved", "not solved yet", "the delay is unresolved"],
-      ["blocker", "thing stopping progress", "list the blockers"]
+      ["escalate", "\u5347\u7d1a\u8655\u7406", "escalate the issue"],
+      ["unresolved", "\u5c1a\u672a\u89e3\u6c7a", "the delay is unresolved"],
+      ["blocker", "\u963b\u7919", "list the blockers"]
     ]
   },
   {
@@ -214,9 +214,9 @@ const contexts = [
     risk: "giving away too much too early",
     action: "offer one concession and ask for confirmation",
     words: [
-      ["flexible", "able to change", "be flexible on the timeline"],
-      ["core scope", "main agreed work", "keep the core scope"],
-      ["concession", "thing offered in exchange", "offer one concession"]
+      ["flexible", "\u6709\u5f48\u6027", "be flexible on the timeline"],
+      ["core scope", "\u6838\u5fc3\u7bc4\u570d", "keep the core scope"],
+      ["concession", "\u8b93\u6b65", "offer one concession"]
     ]
   },
   {
@@ -227,9 +227,9 @@ const contexts = [
     risk: "people leaving without knowing what to do",
     action: "write each action item with an owner and due date",
     words: [
-      ["action item", "specific task after a meeting", "write the action items"],
-      ["owner", "person responsible", "assign an owner"],
-      ["due date", "deadline", "add a due date"]
+      ["action item", "\u884c\u52d5\u9805\u76ee", "write the action items"],
+      ["owner", "\u8ca0\u8cac\u4eba", "assign an owner"],
+      ["due date", "\u671f\u9650", "add a due date"]
     ]
   }
 ];
@@ -278,25 +278,25 @@ function buildLesson(index) {
         speaker: speakerA,
         role: roleA,
         text: `Hi ${speakerB}, ${context.opener} ${topic}?`,
-        translation: `${uiText.focusOpening} ${sequence}: ${uiText.openingClearly}`
+        translation: `${uiText.greetingPrefix}${speakerB}${uiText.greetingSuffix}`
       },
       {
         speaker: speakerB,
         role: roleB,
         text: `Sure. ${context.status}, especially before ${timeframe}.`,
-        translation: `${uiText.focusOpening} ${sequence}: ${uiText.statusClearly}`
+        translation: uiText.statusTranslation
       },
       {
         speaker: speakerA,
         role: roleA,
         text: `Thanks. My main concern is ${context.risk}.`,
-        translation: `${uiText.focusOpening} ${sequence}: ${uiText.riskPolitely}`
+        translation: uiText.riskTranslation
       },
       {
         speaker: speakerB,
         role: roleB,
         text: `Understood. I will ${context.action}, ${closingDetails[variant % closingDetails.length]}.`,
-        translation: `${uiText.focusOpening} ${sequence}: ${uiText.actionClearly}`
+        translation: uiText.actionTranslation
       }
     ],
     words: context.words.map(([term, meaning, note]) => ({ term, meaning, note }))
